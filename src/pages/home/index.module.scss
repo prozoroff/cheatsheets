@@ -1,0 +1,77 @@
+@import "../../variables.scss";
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: $padding-m;
+  font-family: "Arial", sans-serif;
+
+  height: 100vh;
+  width: 100%;
+
+  animation: zoom-in 1s ease;
+}
+
+.root img {
+  width: 100%;
+  max-width: 80%;
+  max-height: 40%;
+  margin-bottom: $padding-s;
+}
+
+.root p {
+  font-size: $font-size-l;
+  text-align: center;
+  margin: 0 $padding-m;
+}
+
+.topics {
+  margin: 0 $padding-m;
+  display: flex;
+  flex-direction: column;
+  gap: $padding-xs;
+}
+
+.topics > div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.topics a {
+  padding: $padding-xs;
+  margin-right: $padding-xs;
+  font-size: $font-size-l;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  white-space: nowrap;
+  display: inline-block;
+
+  transition: background-color $transition;
+}
+
+.topics a:hover {
+  background: $color-accent;
+  text-decoration: underline;
+}
+
+.topics h2 {
+  margin: $padding-xs;
+  font-size: $font-size-l;
+  color: $color-gray;
+  font-weight: normal;
+  display: inline-block;
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}

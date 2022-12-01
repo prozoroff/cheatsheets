@@ -1,0 +1,21 @@
+@import "../../variables.scss";
+
+.rotate button {
+  color: $color-gray;
+  margin: auto;
+  display: inline-block;
+  padding: $padding-xs;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  cursor: pointer;
+
+  img {
+    width: $size-m;
+    height: $size-m;
+  }
+}
+
+.rotate button:hover {
+  background-color: $color-accent;
+}

@@ -1,0 +1,154 @@
+#cheatsheet {
+  padding: 3em;
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(34, 34, 34);
+  font-size: 14px;
+}
+
+#cheatsheet h1 {
+  text-align: center;
+  margin: 0.5em 0 1em;
+  color: #fff;
+}
+
+#cheatsheet > div {
+  column-gap: 0;
+}
+
+#cheatsheet section {
+  margin: 0 0.5em 1em;
+  padding: 1em 1em 0.25em;
+  border-radius: 0.5em;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  width: calc(100% - 3em);
+  background-color: rgb(48, 48, 48);
+
+  /* https://stackoverflow.com/questions/5314726/css-multi-column-layout-of-list-items-doesnt-align-properly-in-chrome */
+  display: inline-block;
+
+  /* https://github.com/niklasvh/html2canvas/issues/1497 */
+  position: relative;
+}
+
+#cheatsheet section > p {
+  margin: -0.75em 0 0;
+}
+
+#cheatsheet section h3 {
+  margin: 0.5em 0 1em;
+  color: #fff;
+}
+
+#cheatsheet section h4 {
+  color: #fff;
+}
+
+#cheatsheet code {
+  font-weight: bold;
+  font-size: 1em;
+  display: block;
+  color: #abb2bf;
+  margin: 1.25em 0 0.5em;
+}
+
+#cheatsheet p {
+  margin: 0em 0 1em;
+  color: #ccc;
+}
+
+#cheatsheet code.plaintext {
+  color: hotpink;
+}
+
+/*
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+*/
+
+.hljs {
+  color: #abb2bf;
+  background: #282c34;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+
+.hljs-literal {
+  color: #56b6c2;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: #98c379;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+
+.hljs-built_in,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}

@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css?family=Neucha|Cabin+Sketch&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+.default {
+  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+  color: rgb(73, 80, 87);
+  background: rgb(253, 253, 254);
+}
+
+.default b {
+  color: #2fa4e7;
+}
+
+.darkly {
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(48, 48, 48);
+  color: white;
+}
+
+.journal {
+  font-family: "Arial Narrow Bold", sans-serif;
+  background: white;
+  color: #000;
+}
+
+.sketchy {
+  font-family: Neucha, Arial, sans-serif;
+  font-style: italic;
+  background: white;
+  border: 2px solid black;
+}
+
+.morph {
+  font-family: Nunito, Arial, sans-serif;
+  font-style: italic;
+  background: #d9e3f1;
+  color: #485785;
+  box-shadow: rgba(109, 114, 121, 0.2) 2px 2px 6px 0px inset,
+    rgba(255, 255, 255, 0.2) -3px -2px 4px 0px inset;
+}

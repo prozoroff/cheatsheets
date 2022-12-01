@@ -1,0 +1,52 @@
+@import "../../variables.scss";
+
+.themes {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-s;
+}
+
+.themes div {
+  font-size: $font-size-s;
+  width: $size-m;
+  height: $size-m;
+  border-radius: $size-m;
+  text-align: center;
+  cursor: pointer;
+
+  transition: transform $transition;
+}
+
+.themes span {
+  vertical-align: middle;
+  line-height: $size-m;
+}
+
+.themes div:hover {
+  transform: scale(1.1);
+}
+
+.select {
+  color: $color-black;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  height: $size-s;
+  font-size: $font-size-l;
+  background-color: transparent;
+  padding: 0 0.25em;
+  outline: none;
+  font-family: $font-family;
+  -webkit-appearance: none;
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .select {
+    display: block;
+  }
+
+  .themes {
+    display: none;
+  }
+}

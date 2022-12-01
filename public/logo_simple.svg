@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="35.176525mm"
+   height="29.809402mm"
+   viewBox="0 0 35.176525 29.809402"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <rect
+       x="373.62064"
+       y="198.61617"
+       width="352.78677"
+       height="261.11777"
+       id="rect556" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-162.83443,-154.99961)">
+    <g
+       inkscape:label="Clip"
+       id="g431">
+      <g
+         aria-label="cheat sheets .dev"
+         transform="scale(0.26458333)"
+         id="text249"
+         style="font-size:40px;white-space:pre">
+        <g
+           aria-label="cheat sheets .dev"
+           id="text554"
+           style="line-height:0.95;shape-inside:url(#rect556)">
+          <path
+             id="rect1038-2"
+             style="font-size:40px;line-height:0.95;white-space:pre;shape-inside:url(#rect556);fill:#f6d51e;fill-opacity:1;stroke-width:0.507215;stroke-linecap:round;stroke-linejoin:bevel;paint-order:markers stroke fill"
+             d="m 615.43722,619.07577 108.64623,-33.25042 24.30442,79.41505 -108.64623,33.25042 z"
+             inkscape:export-filename="rect1038-2.svg"
+             inkscape:export-xdpi="72"
+             inkscape:export-ydpi="72" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
