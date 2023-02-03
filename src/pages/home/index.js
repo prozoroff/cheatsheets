@@ -22,7 +22,7 @@ const Home = () => {
               {topicsList
                 .filter((item) => item.kind === kind)
                 .map(({ title, id }) => (
-                  <a key={id} href={`/${id}`}>
+                  <a key={id} href={`/topic/${id}`}>
                     {title}
                   </a>
                 ))}
