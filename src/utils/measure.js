@@ -39,11 +39,11 @@ const getBox = async (cheatsheet, rotation) => {
   return box;
 };
 
-function applySize(container, cheatsheet, box, rotation) {
-  const scale =
-    rotation === "horizontal"
-      ? container.clientWidth / box.width
-      : container.clientHeight / box.height;
+function applySize(container, cheatsheet, box) {
+  const scale = Math.min(
+    container.clientWidth / box.width,
+    container.clientHeight / box.height
+  );
   cheatsheet.style.width = `${box.width}px`;
   cheatsheet.style.height = `${box.height}px`;
   cheatsheet.style.transform = `scale(${scale})`;

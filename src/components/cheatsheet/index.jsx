@@ -28,7 +28,7 @@ const CheatSheet = ({ topic }) => {
   const measureAndApplySize = () => {
     getBox(cheatsheetRef.current, rotation).then((box) => {
       if (box.width) {
-        applySize(containerRef.current, cheatsheetRef.current, box, rotation);
+        applySize(containerRef.current, cheatsheetRef.current, box);
         setIsLoading(false);
         cheatsheetRef.current.style.visibility = "visible";
       }
