@@ -16,7 +16,7 @@
 
 .root img {
   width: 100%;
-  max-width: $size-m * 8;
+  max-width: min(80%, 400px);
   max-height: 40%;
   margin-bottom: $padding-s;
 }
@@ -80,5 +80,9 @@
   .root {
     margin-top: $padding-l;
     height: auto;
+  }
+
+  .root p {
+    font-size: $font-size-m;
   }
 }
