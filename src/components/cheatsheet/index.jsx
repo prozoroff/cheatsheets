@@ -51,12 +51,14 @@ const CheatSheet = ({ topic }) => {
     setIsLoading(Boolean(cheatsheet));
   }, [topic, theme, rotation, windowSize]);
 
-  const isVisible = rotation && cheatsheet;
+  if (!rotation) {
+    return null;
+  }
 
   return (
     <div className={styles.container} ref={containerRef}>
       {isLoading && <img className={styles.preloader} src="/preloader.svg" />}
-      {isVisible ? (
+      {cheatsheet ? (
         <div
           key={topic + theme + rotation + windowSize.width}
           ref={cheatsheetRef}
