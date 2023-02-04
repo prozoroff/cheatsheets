@@ -16,7 +16,7 @@
 
 .root img {
   width: 100%;
-  max-width: 80%;
+  max-width: $size-m * 8;
   max-height: 40%;
   margin-bottom: $padding-s;
 }
@@ -73,5 +73,12 @@
 
   100% {
     transform: scale(1, 1);
+  }
+}
+
+@media (max-width: 800px) {
+  .root {
+    margin-top: $padding-l;
+    height: auto;
   }
 }
