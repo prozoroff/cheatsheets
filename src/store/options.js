@@ -1,10 +1,13 @@
 import { atom } from "nanostores";
 
-const defaultOptons = {
-  rotation: "horizontal",
-};
+const defaultOptons = {};
 
 export const options = atom(defaultOptons);
+
+export function setRotation(rotation) {
+  const optionsObject = options.get();
+  options.set({ ...optionsObject, rotation });
+}
 
 export function rotate() {
   const optionsObject = options.get();

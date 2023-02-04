@@ -17,7 +17,9 @@ const CheatSheet = ({ topic }) => {
   const containerRef = useRef(null);
   const linkRef = useRef(null);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const cheatsheet = cheatsheets[topic];
+
+  const [isLoading, setIsLoading] = useState(Boolean(cheatsheet));
   const [windowSize, setWindowSize] = useState({
     width: undefined,
     height: undefined,
@@ -46,27 +48,32 @@ const CheatSheet = ({ topic }) => {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(Boolean(cheatsheet));
   }, [topic, theme, rotation, windowSize]);
+
+  const isVisible = rotation && cheatsheet;
 
   return (
     <div className={styles.container} ref={containerRef}>
       {isLoading && <img className={styles.preloader} src="/preloader.svg" />}
-
-      <div
-        key={topic + theme + rotation + windowSize.width}
-        ref={cheatsheetRef}
-        className={styles.cheatsheet}
-      >
-        <link
-          ref={linkRef}
-          rel="stylesheet"
-          type="text/css"
-          href={getThemeCss(theme)}
-          onLoad={measureAndApplySize}
-        />
-        {renderLookup.root(cheatsheets[topic], { rotation })}
-      </div>
+      {isVisible ? (
+        <div
+          key={topic + theme + rotation + windowSize.width}
+          ref={cheatsheetRef}
+          className={styles.cheatsheet}
+        >
+          <link
+            ref={linkRef}
+            rel="stylesheet"
+            type="text/css"
+            href={getThemeCss(theme)}
+            onLoad={measureAndApplySize}
+          />
+          {renderLookup.root(cheatsheet, { rotation })}
+        </div>
+      ) : (
+        <div className={styles.warning}>Cheat sheet not found</div>
+      )}
     </div>
   );
 };

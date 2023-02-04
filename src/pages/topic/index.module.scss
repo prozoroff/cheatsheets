@@ -19,7 +19,7 @@ body {
   justify-content: center;
   padding: 0 $padding-l;
   overflow: hidden;
-  height: 100vh;
+  height: 100%;
 }
 
 .selectors {
@@ -68,11 +68,12 @@ select {
 
   .root > aside {
     flex-direction: row;
-    gap: $padding-m;
+    gap: $padding-s;
   }
 
   .root > main {
     height: 100%;
+    justify-content: flex-start;
   }
 
   .controls {

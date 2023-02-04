@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { rotate } from "../../store/options";
+import { rotate, setRotation } from "../../store/options";
 
 import styles from "./index.module.scss";
 
@@ -8,6 +8,12 @@ const Rotate = () => {
   const onRotateClickHander = () => {
     rotate();
   };
+
+  useEffect(() => {
+    setRotation(
+      window.innerHeight > window.innerWidth ? "vertical" : "horizontal"
+    );
+  }, []);
 
   return (
     <div className={styles.rotate}>
