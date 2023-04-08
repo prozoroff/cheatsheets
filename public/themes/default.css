@@ -15,9 +15,9 @@
   column-gap: 0;
 }
 
-#cheatsheet section {
+#cheatsheet article {
   margin: 0 0.5em 1em;
-  padding: 1em 1em 0.25em;
+  padding: 0 1em 0.25em;
   border: 1px solid #dee2e6;
   background: rgb(248, 249, 250);
   border-radius: 0.5em;
@@ -32,13 +32,13 @@
   position: relative;
 }
 
-#cheatsheet section > p {
+#cheatsheet article > p {
   margin: -0.75em 0 0;
 }
 
-#cheatsheet section h3 {
+#cheatsheet article h3 {
   color: #2fa4e7;
-  margin: 0.5em 0 1em;
+  margin: 1.5em 0 1em;
 }
 
 #cheatsheet code {

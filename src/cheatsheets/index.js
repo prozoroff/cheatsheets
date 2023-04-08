@@ -2,10 +2,10 @@ import git from "./git";
 import linuxShell from "./linuxShell";
 import reactHooks from "./reactHooks";
 
-const topics = {
+const cheatsheets = {
   git,
-  "linux-shell": linuxShell,
-  "react-hooks": reactHooks,
+  linuxShell,
+  reactHooks,
 };
 
-export default topics;
+export default cheatsheets;

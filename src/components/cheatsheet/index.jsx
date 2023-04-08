@@ -2,14 +2,14 @@ import React, { useRef, useEffect, useState } from "react";
 import { useStore } from "@nanostores/react";
 
 import { getBox, throttle, getThemeCss, applySize } from "../../utils";
-import cheatsheets from "../../cheatsheets/index";
 import { selectedTheme } from "../../store/themes";
 import { options } from "../../store/options";
+import { getById } from "../../store/topics";
 import { renderLookup } from "../../utils";
 
 import styles from "./index.module.scss";
 
-const CheatSheet = ({ topic }) => {
+const CheatSheet = ({ topicId }) => {
   const theme = useStore(selectedTheme).id;
   const { rotation } = useStore(options);
 
@@ -17,7 +17,13 @@ const CheatSheet = ({ topic }) => {
   const containerRef = useRef(null);
   const linkRef = useRef(null);
 
-  const cheatsheet = cheatsheets[topic];
+  let cheatsheet = getById(topicId)?.cheatsheet;
+  if (!cheatsheet) {
+    const cheatsheetStr = localStorage.getItem(topicId);
+    if (cheatsheetStr) {
+      cheatsheet = JSON.parse(cheatsheetStr);
+    }
+  }
 
   const [isLoading, setIsLoading] = useState(Boolean(cheatsheet));
   const [windowSize, setWindowSize] = useState({
@@ -49,7 +55,7 @@ const CheatSheet = ({ topic }) => {
 
   useEffect(() => {
     setIsLoading(Boolean(cheatsheet));
-  }, [topic, theme, rotation, windowSize]);
+  }, [topicId, theme, rotation, windowSize]);
 
   if (!rotation) {
     return null;
@@ -60,7 +66,7 @@ const CheatSheet = ({ topic }) => {
       {isLoading && <img className={styles.preloader} src="/preloader.svg" />}
       {cheatsheet ? (
         <div
-          key={topic + theme + rotation + windowSize.width}
+          key={topicId + theme + rotation + windowSize.width}
           ref={cheatsheetRef}
           className={styles.cheatsheet}
         >

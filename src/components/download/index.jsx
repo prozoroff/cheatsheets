@@ -13,11 +13,11 @@ import styles from "./index.module.scss";
 const Download = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { rotation } = useStore(options);
-  const topic = useStore(selectedTopic).id;
+  const topic = useStore(selectedTopic)?.id;
   const theme = useStore(selectedTheme).id;
 
   const onPngClickHandler = () => {
-    if (isLoading) return;
+    if (isLoading || !topic) return;
     const container = document.getElementById("cheatsheet").parentElement;
     const box = container.getBoundingClientRect();
     const filename = `${topic}_${theme}.png`;

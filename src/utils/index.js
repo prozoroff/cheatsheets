@@ -1,7 +1,8 @@
 import { downloadImage } from "./image";
 import { getBox, getThemeCss, applySize } from "./measure";
 import { renderLookup } from "./cheatsheet";
-import { throttle, split, permutations } from "./common";
+import { generate } from "./chatgpt";
+import { throttle, split, permutations, slugify } from "./common";
 
 export {
   downloadImage,
@@ -12,4 +13,6 @@ export {
   throttle,
   split,
   permutations,
+  slugify,
+  generate,
 };

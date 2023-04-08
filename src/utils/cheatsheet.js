@@ -3,7 +3,7 @@ import hljs from "highlight.js";
 
 import { split, permutations } from "../utils";
 
-const itemWidth = ({ items, command, description }) => {
+const itemWidth = ({ items, cheat, description }) => {
   if (items) {
     const widths = items.map(itemWidth).sort();
     return widths[Math.floor(widths.length / 2)];
@@ -11,18 +11,18 @@ const itemWidth = ({ items, command, description }) => {
 
   const widths = [
     ...(description?.split("\n").map((line) => line.length) || []),
-    ...(command?.split("\n").map((line) => line.length) || []),
+    ...(cheat?.split("\n").map((line) => line.length) || []),
   ];
 
   return Math.max(...widths);
 };
 
-const lines = ({ items, command, description }) => {
+const lines = ({ items, cheat, description }) => {
   if (items) {
     return items.reduce((acc, item) => acc + lines(item), 0);
   }
   return (
-    (description?.split("\n").length || 0) + (command?.split("\n").length || 0)
+    (description?.split("\n").length || 0) + (cheat?.split("\n").length || 0)
   );
 };
 
@@ -46,7 +46,19 @@ const arrange = (items, columnCount) => {
 const getColumns = ({ items }, { rotation }) => {
   const medianWidth = itemWidth({ items });
   const factor = rotation === "horizontal" ? 1 : 1.414;
-  return Math.round(180 / medianWidth / factor);
+  return Math.min(items.length, Math.round(180 / medianWidth / factor));
+};
+
+const getKind = (item) => {
+  if (item.kind) {
+    return item.kind;
+  }
+
+  if (item.cheat) {
+    return "cheat";
+  }
+
+  return "article";
 };
 
 export const renderLookup = {
@@ -60,36 +72,36 @@ export const renderLookup = {
       <main id="cheatsheet">
         <h1>{title}</h1>
         <div style={{ columnCount }}>
-          {columnItems.map((item, i) => renderLookup[item.kind](item, i))}
+          {columnItems.map((item, i) => renderLookup[getKind(item)](item, i))}
         </div>
       </main>
     );
   },
-  section: ({ items = [], title, description }, i) => {
+  article: ({ items = [], title, description }, i) => {
     return (
-      <section key={i}>
-        <h3>{title}</h3>
+      <article key={i}>
+        {title && <h3>{title}</h3>}
         {description && <p>{description}</p>}
-        {items.map((item, i) => renderLookup[item.kind](item, i))}
-      </section>
+        {items.map((item, i) => renderLookup[getKind(item)](item, i))}
+      </article>
     );
   },
-  cheat: ({ command, description, title, language = "plaintext" }, i) => {
-    const codeElement = command ? (
+  cheat: ({ cheat, description, title, language = "plaintext" }, i) => {
+    const codeElement = cheat ? (
       <code className={language}>
         <div
           dangerouslySetInnerHTML={{
-            __html: hljs.highlight(command, { language }).value,
+            __html: hljs.highlight(cheat, { language }).value,
           }}
         ></div>
       </code>
     ) : null;
     return (
-      <div key={i}>
+      <section key={i}>
         {title && <h4>{title}</h4>}
         {language === "plaintext" ? codeElement : <pre>{codeElement}</pre>}
         <p>{description}</p>
-      </div>
+      </section>
     );
   },
 };

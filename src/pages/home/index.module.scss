@@ -17,7 +17,7 @@
 .root img {
   width: 100%;
   max-width: min(80%, 400px);
-  max-height: 40%;
+  max-height: 30%;
   margin-bottom: $padding-s;
 }
 
@@ -64,6 +64,26 @@
   color: $color-gray;
   font-weight: normal;
   display: inline-block;
+}
+
+.chatgpt {
+  font-size: $font-size-l;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.chatgpt a {
+  padding: $padding-xs;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: background-color $transition;
+}
+
+.chatgpt a:hover {
+  background: black;
+  color: $color-accent;
+  text-decoration: underline;
 }
 
 @keyframes zoom-in {

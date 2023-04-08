@@ -24,9 +24,9 @@ h4 {
   column-gap: 0;
 }
 
-#cheatsheet section {
+#cheatsheet article {
   margin: 0 0.5em 1em;
-  padding: 1em 1em 0.25em;
+  padding: 0 1em 0.25em;
   border-radius: 0.5em;
   break-inside: avoid;
   page-break-inside: avoid;
@@ -36,12 +36,12 @@ h4 {
   border-radius: 5px 5px 5px 5px/25px 25px 25px 5px;
 }
 
-#cheatsheet section h3 {
+#cheatsheet article h3 {
   color: #000;
-  margin: 0 0 1em;
+  margin: 1em 0 1em;
 }
 
-#cheatsheet section > p {
+#cheatsheet article > p {
   margin: -0.75em 0 0;
 }
 

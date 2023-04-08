@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStore } from "@nanostores/react";
 
 import Themes from "../../components/themes";
 import CheatSheet from "../../components/cheatsheet";
+import Prompt from "../../components/prompt";
 import Download from "../../components/download";
 import Rotate from "../../components/rotate";
 import { themes, selectTheme } from "../../store/themes";
+import { selectTopic } from "../../store/topics";
 import { router } from "../../store/router";
 
 import styles from "./index.module.scss";
@@ -13,6 +15,13 @@ import styles from "./index.module.scss";
 const Topic = () => {
   const themesList = useStore(themes);
   const page = useStore(router);
+
+  const topicId = page.params.topicId;
+  const isPromptMode = topicId === "prompt";
+
+  useEffect(() => {
+    selectTopic(topicId);
+  }, []);
 
   return (
     <div className={styles.root}>
@@ -29,7 +38,7 @@ const Topic = () => {
         </div>
       </aside>
       <main>
-        <CheatSheet topic={page.params.topicId} />
+        {isPromptMode ? <Prompt /> : <CheatSheet topicId={topicId} />}
       </main>
     </div>
   );

@@ -7,7 +7,7 @@ export default {
   },
   items: [
     {
-      kind: "section",
+      kind: "article",
       title: "useState",
       description: "Lets you use local state within a function component",
       items: [
@@ -15,7 +15,7 @@ export default {
           kind: "cheat",
           title: "Declare and Update State Variable",
           language: "javascript",
-          command: `const [count, setCount] = useState(0)
+          cheat: `const [count, setCount] = useState(0)
 const handleClick = () => setCount(count + 1)
 
 return (
@@ -35,7 +35,7 @@ return (
           kind: "cheat",
           title: "Initialize State from Function",
           language: "javascript",
-          command: `const [token] = useState(() => {
+          cheat: `const [token] = useState(() => {
     let token = window.localStorage.getItem("my-token");
     return token || "default-token"
 })
@@ -48,7 +48,7 @@ return <div>Token is {token}</div>`,
           kind: "cheat",
           title: "Functional setState",
           language: "javascript",
-          command: `const [value, updateValue] = useState(0)
+          cheat: `const [value, updateValue] = useState(0)
 //...
 updateValue(value => value + 1);`,
           description:
@@ -57,7 +57,7 @@ updateValue(value => value + 1);`,
       ],
     },
     {
-      kind: "section",
+      kind: "article",
       title: "useReducer",
       description: "Lets you add a reducer to your component",
       items: [
@@ -65,7 +65,7 @@ updateValue(value => value + 1);`,
           kind: "cheat",
           title: "Basic Usage",
           language: "javascript",
-          command: `const initialState = { value: 0 }
+          cheat: `const initialState = { value: 0 }
 const reducer = (state, action) => {
   switch (action) {
     case 'plus':
@@ -92,7 +92,7 @@ const Counter = () => {
           kind: "cheat",
           title: "Initialize State Lazily",
           language: "javascript",
-          command: `const initializeState = () => ({ value: 100 });
+          cheat: `const initializeState = () => ({ value: 100 });
 const [state, dispatch] = useReducer(reducer, initialState, initializeState)`,
           description:
             "useReducer takes a third function parameter. You may initialize state from this function, and whatever's returned from this function is returned as the state object. This function will be called with initialState - the second parameter.",
@@ -101,7 +101,7 @@ const [state, dispatch] = useReducer(reducer, initialState, initializeState)`,
     },
 
     {
-      kind: "section",
+      kind: "article",
       title: "useCallback",
       description: "Lets you cache a function definition between re-renders",
       items: [
@@ -109,7 +109,7 @@ const [state, dispatch] = useReducer(reducer, initialState, initializeState)`,
           kind: "cheat",
           title: "Basic Usage",
           language: "javascript",
-          command: `const handleSubmit = useCallback((orderDetails) => {
+          cheat: `const handleSubmit = useCallback((orderDetails) => {
     post('/product/' + productId + '/buy', {
         referrer,
         orderDetails,
@@ -123,7 +123,7 @@ return <ShippingForm onSubmit={handleSubmit} />;`,
       ],
     },
     {
-      kind: "section",
+      kind: "article",
       title: "useMemo",
       description:
         "Lets you cache the result of a calculation between re-renders",
@@ -132,7 +132,7 @@ return <ShippingForm onSubmit={handleSubmit} />;`,
           kind: "cheat",
           title: "Basic Usage",
           language: "javascript",
-          command: `function TodoList({ todos, tab }) {
+          cheat: `function TodoList({ todos, tab }) {
     const visibleTodos = useMemo(
         () => filterTodos(todos, tab),
         [todos, tab]
@@ -145,7 +145,7 @@ return <ShippingForm onSubmit={handleSubmit} />;`,
       ],
     },
     {
-      kind: "section",
+      kind: "article",
       title: "useRef",
       description: "Lets you reference a value that’s not needed for rendering",
       items: [
@@ -153,7 +153,7 @@ return <ShippingForm onSubmit={handleSubmit} />;`,
           kind: "cheat",
           title: "Referencing a Value",
           language: "javascript",
-          command: `const intervalRef = useRef(0);
+          cheat: `const intervalRef = useRef(0);
 
 function handleStartClick() {
     const intervalId = setInterval(() => {
@@ -173,7 +173,7 @@ function handleStopClick() {
           kind: "cheat",
           title: "Accessing the DOM",
           language: "javascript",
-          command: `const inputRef = useRef(null);
+          cheat: `const inputRef = useRef(null);
 
 function handleClick() {
     inputRef.current.focus();
@@ -186,7 +186,7 @@ return <input ref={inputRef} />;`,
       ],
     },
     {
-      kind: "section",
+      kind: "article",
       title: "useEffect",
       description: "Lets you synchronize a component with an external system",
       items: [
@@ -194,7 +194,7 @@ return <input ref={inputRef} />;`,
           kind: "cheat",
           title: "Basic Side Effect",
           language: "javascript",
-          command: `useEffect(() => {
+          cheat: `useEffect(() => {
     const clicked = () => console.log('window clicked')
     window.addEventListener('click', clicked)
     return () => {
@@ -208,7 +208,7 @@ return <input ref={inputRef} />;`,
           kind: "cheat",
           title: "Skipping Effects with Dependency",
           language: "javascript",
-          command: `const [randomNumber, setRandomNumber] = useState(0)
+          cheat: `const [randomNumber, setRandomNumber] = useState(0)
 const [effectLogs, setEffectLogs] = useState([])
 
 useEffect(
@@ -242,7 +242,7 @@ return (
           kind: "cheat",
           title: "No Array Dependency",
           language: "javascript",
-          command: `useEffect(() => {
+          cheat: `useEffect(() => {
     console.log("This will be logged after every render!")
 })`,
           description:
@@ -251,7 +251,7 @@ return (
       ],
     },
     {
-      kind: "section",
+      kind: "article",
       title: "useLayoutEffect",
       description: "Fires before the browser repaints the screen",
       items: [
@@ -259,7 +259,7 @@ return (
           kind: "cheat",
           title: "Layout Measurements",
           language: "javascript",
-          command: `const ref = useRef(null);
+          cheat: `const ref = useRef(null);
 const [tooltipHeight, setTooltipHeight] = useState(0);
 
 useLayoutEffect(() => {
