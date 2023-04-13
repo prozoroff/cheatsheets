@@ -26,21 +26,33 @@ const lines = ({ items, cheat, description }) => {
   );
 };
 
-const arrange = (items, columnCount) => {
-  if (items.length > 10) {
-    return items;
-  }
-  for (const combination of permutations(items, items.length)) {
-    const columns = split(combination, columnCount);
-    const columnsLines = columns.map((items) => lines({ items }));
-    const diff = columnsLines.reduce(
-      (acc, columnLines) => acc + Math.abs(columnLines - columnsLines[0])
-    );
-    if (diff < 10 * columnCount) {
-      return combination;
+const arrange = (items) => {
+  const combinations =
+    items.length > 5 ? [items] : permutations(items, items.length);
+  let result;
+  for (const combination of combinations) {
+    for (let columnCount = items.length; columnCount >= 1; columnCount--) {
+      const columns = split(combination, columnCount);
+      const columnsLines = columns.map((items) => lines({ items }));
+      const average =
+        columnsLines.reduce((acc, val) => acc + val, 0) / columnsLines.length;
+      const diff = columnsLines.reduce(
+        (acc, columnLines) => acc + Math.abs(columnLines - average),
+        0
+      );
+      if (!result || result.diff > diff) {
+        result = {
+          items: combination,
+          columnCount,
+          diff,
+        };
+      }
+      if (diff < 10) {
+        return result;
+      }
     }
   }
-  return items;
+  return result;
 };
 
 const getColumns = ({ items }, { rotation }) => {
@@ -63,10 +75,17 @@ const getKind = (item) => {
 
 export const renderLookup = {
   root: ({ items = [], title, columns, needArrangement }, options) => {
-    const columnCount = columns
-      ? columns[options.rotation]
-      : getColumns({ items }, options);
-    const columnItems = needArrangement ? arrange(items, columnCount) : items;
+    let columnCount = columns && columns[options.rotation];
+    let columnItems = items;
+    if (!columnCount) {
+      if (needArrangement) {
+        const arrangement = arrange(items, columnCount);
+        columnCount = arrangement.columnCount;
+        columnItems = arrangement.items;
+      } else {
+        columnCount = getColumns({ items }, options);
+      }
+    }
 
     return (
       <main id="cheatsheet">

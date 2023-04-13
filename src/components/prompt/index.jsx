@@ -10,12 +10,12 @@ const Prompt = () => {
 
   const handleSubmit = () => {
     setLoading(true);
-    generate(topic).then(({ items }) => {
+    generate(topic).then((result) => {
       const topicId = slugify(topic);
       const config = {
         kind: "root",
         title: `${topic.toUpperCase()} CHEAT SHEET`,
-        items,
+        ...result,
       };
       localStorage.setItem(topicId, JSON.stringify(config));
       window.location.replace(`/${topicId}`);
