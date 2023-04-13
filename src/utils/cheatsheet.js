@@ -32,7 +32,7 @@ const arrange = (items, orientation) => {
     items.length > 5 ? [items] : permutations(items, items.length);
   let result;
   const maxColumns = Math.min(MAX_COLUMNS[orientation], items.length);
-  const minColumns = Math.max(MIN_COLUMNS[orientation], items.length);
+  const minColumns = MIN_COLUMNS[orientation];
   for (const combination of combinations) {
     for (
       let columnCount = maxColumns;
