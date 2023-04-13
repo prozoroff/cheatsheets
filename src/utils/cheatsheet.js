@@ -2,6 +2,7 @@ import React from "react";
 import hljs from "highlight.js";
 
 import { split, permutations } from "../utils";
+import { MAX_COLUMNS, MIN_COLUMNS } from "../consts";
 
 const itemWidth = ({ items, cheat, description }) => {
   if (items) {
@@ -26,12 +27,18 @@ const lines = ({ items, cheat, description }) => {
   );
 };
 
-const arrange = (items) => {
+const arrange = (items, orientation) => {
   const combinations =
     items.length > 5 ? [items] : permutations(items, items.length);
   let result;
+  const maxColumns = Math.min(MAX_COLUMNS[orientation], items.length);
+  const minColumns = Math.max(MIN_COLUMNS[orientation], items.length);
   for (const combination of combinations) {
-    for (let columnCount = items.length; columnCount >= 1; columnCount--) {
+    for (
+      let columnCount = maxColumns;
+      columnCount >= minColumns;
+      columnCount--
+    ) {
       const columns = split(combination, columnCount);
       const columnsLines = columns.map((items) => lines({ items }));
       const average =
@@ -79,7 +86,7 @@ export const renderLookup = {
     let columnItems = items;
     if (!columnCount) {
       if (needArrangement) {
-        const arrangement = arrange(items, columnCount);
+        const arrangement = arrange(items, options.rotation);
         columnCount = arrangement.columnCount;
         columnItems = arrangement.items;
       } else {
