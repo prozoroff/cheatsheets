@@ -43,10 +43,11 @@ const arrange = (items, orientation) => {
       const columnsLines = columns.map((items) => lines({ items }));
       const average =
         columnsLines.reduce((acc, val) => acc + val, 0) / columnsLines.length;
-      const diff = columnsLines.reduce(
-        (acc, columnLines) => acc + Math.abs(columnLines - average),
-        0
-      );
+      const diff =
+        columnsLines.reduce(
+          (acc, columnLines) => acc + Math.abs(columnLines - average),
+          0
+        ) / columnCount;
       if (!result || result.diff > diff) {
         result = {
           items: combination,
@@ -54,7 +55,7 @@ const arrange = (items, orientation) => {
           diff,
         };
       }
-      if (diff < 10) {
+      if (diff < 2) {
         return result;
       }
     }
