@@ -1,7 +1,7 @@
 import React from "react";
 import hljs from "highlight.js";
 
-import { split, permutations } from "../utils";
+import { getPartitions } from "../utils";
 import { MAX_COLUMNS, MIN_COLUMNS } from "../consts";
 
 const itemWidth = ({ items, cheat, description }) => {
@@ -18,46 +18,39 @@ const itemWidth = ({ items, cheat, description }) => {
   return Math.max(...widths);
 };
 
-const lines = ({ items, cheat, description }) => {
+const lines = ({ items, cheat, description, title }) => {
   if (items) {
-    return items.reduce((acc, item) => acc + lines(item), 0);
+    return (
+      items.reduce((acc, item) => acc + lines(item), 0) +
+      (description?.split("\n").length || 0) +
+      (title?.split("\n").length || 0)
+    );
   }
   return (
     (description?.split("\n").length || 0) + (cheat?.split("\n").length || 0)
   );
 };
 
-const arrange = (items, orientation) => {
-  const combinations =
-    items.length > 5 ? [items] : permutations(items, items.length);
+const arrange = (items, partitions, orientation) => {
   let result;
   const maxColumns = Math.min(MAX_COLUMNS[orientation], items.length);
   const minColumns = MIN_COLUMNS[orientation];
-  for (const combination of combinations) {
-    for (
-      let columnCount = maxColumns;
-      columnCount >= minColumns;
-      columnCount--
-    ) {
-      const columns = split(combination, columnCount);
-      const columnsLines = columns.map((items) => lines({ items }));
-      const average =
-        columnsLines.reduce((acc, val) => acc + val, 0) / columnsLines.length;
-      const diff =
-        columnsLines.reduce(
-          (acc, columnLines) => acc + Math.abs(columnLines - average),
-          0
-        ) / columnCount;
-      if (!result || result.diff > diff) {
-        result = {
-          items: combination,
-          columnCount,
-          diff,
-        };
-      }
-      if (diff < 2) {
-        return result;
-      }
+  const filteredPartitions = partitions.filter(
+    (p) => p.length >= minColumns && p.length <= maxColumns
+  );
+  for (const partition of filteredPartitions) {
+    const columns = partition.map((p) => p.map((index) => items[index]));
+    const columnsLines = columns.map((items) => lines({ items }));
+    const diff = Math.max(...columnsLines) / Math.min(...columnsLines);
+    if (!result || result.diff > diff) {
+      result = {
+        items: columns.flat(),
+        columnCount: columns.length,
+        diff,
+      };
+    }
+    if (diff < 1.1) {
+      return result;
     }
   }
   return result;
@@ -86,8 +79,9 @@ export const renderLookup = {
     let columnCount = columns && columns[options.rotation];
     let columnItems = items;
     if (!columnCount) {
-      if (needArrangement) {
-        const arrangement = arrange(items, options.rotation);
+      if (needArrangement && items.length < 7) {
+        const partitions = getPartitions(items.length);
+        const arrangement = arrange(items, partitions, options.rotation);
         columnCount = arrangement.columnCount;
         columnItems = arrangement.items;
       } else {

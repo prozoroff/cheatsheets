@@ -65,3 +65,45 @@ export const slugify = (str) =>
     .replace(/[^\w\s-]/g, "")
     .replace(/[\s_-]+/g, "-")
     .replace(/^-+|-+$/g, "");
+
+const getItems = (count) => new Array(count).fill(null).map((_, i) => i);
+
+const getSubsets = (arr) =>
+  arr
+    .reduce(
+      (subsets, value) => subsets.concat(subsets.map((set) => [...set, value])),
+      [[]]
+    )
+    .slice(1);
+
+const intersect = (arr1, arr2) => arr1.some((x) => arr2.includes(x));
+
+const addSubset = (partition, additions) => {
+  const subsets = additions.filter(
+    (addition) => !partition.find((subset) => intersect(subset, addition))
+  );
+  return [
+    ...(subsets.length ? [] : [partition]),
+    ...subsets
+      .map((subset) => addSubset([...partition, subset], additions))
+      .flat(),
+  ];
+};
+
+export const getPartitions = (count) => {
+  const items = getItems(count);
+  const subsets = getSubsets(items);
+  const initials = subsets.filter((subset) => !subset[0]);
+  const additions = subsets.filter((subset) => subset[0]);
+  return initials.map((subset) => addSubset([subset], additions)).flat();
+};
+
+export const memoize = (func) => {
+  const memo = {};
+  const slice = Array.prototype.slice;
+  return function () {
+    const args = slice.call(arguments);
+    if (args in memo) return memo[args];
+    else return (memo[args] = func.apply(this, args));
+  };
+};
