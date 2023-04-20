@@ -100,11 +100,14 @@ export const renderLookup = {
   },
   article: ({ items = [], title, description }, i) => {
     return (
-      <article key={i}>
-        {title && <h3>{title}</h3>}
-        {description && <p>{description}</p>}
-        {items.map((item, i) => renderLookup[getKind(item)](item, i))}
-      </article>
+      <>
+        <article key={i}>
+          {title && <h3>{title}</h3>}
+          {description && <p>{description}</p>}
+          {items.map((item, i) => renderLookup[getKind(item)](item, i))}
+        </article>
+        <div></div>
+      </>
     );
   },
   cheat: ({ cheat, description, title, language = "plaintext" }, i) => {
